@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { toast } from "sonner";
-import { createTodo } from "@/services/todo.service";
+import { createTodo, deleteTodo } from "@/services/todo.service";
 
 export type Todo = {
   id?: number;
@@ -65,15 +65,22 @@ export const useJokowiStore = create<JokowiStore>((set, _, store) => ({
     }
   },
 
-  deleteTodo: (id: number) => {
+  deleteTodo: async (id: number) => {
     const toastId = toast.loading("Menghapus data...");
-    
-    set((state) => {
+    try {
+      await deleteTodo(id);
+      
       toast.success("berhasil dihapus", {
         duration: 1000,
         id: toastId,
       });
-      return { todos: state.todos.filter((todo) => todo.id !== id) };
-    });
+
+    } catch {
+      toast.error("gagal", {
+        duration: 1000,
+        id: toastId,
+      });
+      return;
+    }
   },
 }));

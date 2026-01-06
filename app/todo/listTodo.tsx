@@ -8,9 +8,8 @@ import { ButtonComponent } from "./button";
 export function ListTodo({ promiseTodo }: { promiseTodo: Promise<Todo[]> }) {
   const fetchTodo = use(promiseTodo);
 
-  console.log(fetchTodo)
-  
   const todos = useJokowiStore((state) => state.todos);
+  console.log(todos);
 
   const setInitialTodos = useJokowiStore((state) => state.setInitialTodos);
 
