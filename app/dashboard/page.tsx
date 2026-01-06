@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 async function getServerTodos() {
   try {
-    const response = await fetch('http://localhost:3000/api/todos', {
+    const response = await fetch('http://localhost:3001/api/todos', {
       cache: 'no-store' // ini buat fetching data baru setiap saat
     });
     

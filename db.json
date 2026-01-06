@@ -3,18 +3,17 @@
     {
       "id": "1",
       "title": "Hello World",
-      "author": "John Doe"
+      "description": "lorem ipsum dolor sit amet"
     },
     {
-      "id": "2",
-      "title": "Hello World 2",
-      "author": "John Doe 2"
-    }
-  ],
-  "users": [
+      "id": 1767694780367,
+      "title": "asdas",
+      "description": "dasdasdasdas"
+    },
     {
-      "id": "1",
-      "name": "John Doe"
+      "id": 1767694786734,
+      "title": "asdasd",
+      "description": "asdasdasd"
     }
   ]
 }

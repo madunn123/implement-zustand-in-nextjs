@@ -1,5 +1,5 @@
 // ============== Ini aku ubah ke yg lebih general ============== //
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 export const fetchData = async (endpoint: string, options: RequestInit = {}) => {
   const url = endpoint.startsWith('http') ? endpoint : `${BASE_URL}${endpoint}`;
