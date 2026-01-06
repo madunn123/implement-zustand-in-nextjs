@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useJokowiStore } from "@/store/useJokowiStore";
 
-export function ButtonComponent({ id }: { id: number }) {
+export function ButtonComponent({ id }: { id: string }) {
   const deleteTodo = useJokowiStore((state) => state.deleteTodo);
 
   return (

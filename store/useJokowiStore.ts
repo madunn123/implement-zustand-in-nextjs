@@ -3,34 +3,17 @@ import { toast } from "sonner";
 import { createTodo, deleteTodo } from "@/services/todo.service";
 
 export type Todo = {
-  id?: number;
+  id?: string;
   title: string;
   description: string;
 };
 
 type JokowiStore = {
-  todos: Todo[];
-
-  setInitialTodos: (todos: Todo[]) => void;
-
-  addTodo: (payload: Todo) => void;
   onSubmit: (payload: Todo) => void;
-  deleteTodo: (id: number) => void;
+  deleteTodo: (id: string) => void;
 };
 
-export const useJokowiStore = create<JokowiStore>((set, _, store) => ({
-  todos: [],
-
-  setInitialTodos: (payload: Todo[]) => {
-    set({ todos: payload });
-  },
-
-  addTodo: (payload: Todo) => {
-    set((state) => ({
-      todos: [...state.todos, payload],
-    }));
-  },
-
+export const useJokowiStore = create<JokowiStore>(() => ({
   onSubmit: async (payload) => {
     const toastId = toast.loading("Menyimpan data...");
 
@@ -45,10 +28,8 @@ export const useJokowiStore = create<JokowiStore>((set, _, store) => ({
       if (payload?.title && payload?.description) {
         const payloads = {
           ...payload,
-          id: Date.now(),
+          id: Date.now().toString(),
         };
-
-        store.getState().addTodo(payloads);
 
         await createTodo(payloads);
 
@@ -65,16 +46,15 @@ export const useJokowiStore = create<JokowiStore>((set, _, store) => ({
     }
   },
 
-  deleteTodo: async (id: number) => {
+  deleteTodo: async (id: string) => {
     const toastId = toast.loading("Menghapus data...");
     try {
       await deleteTodo(id);
-      
+
       toast.success("berhasil dihapus", {
         duration: 1000,
         id: toastId,
       });
-
     } catch {
       toast.error("gagal", {
         duration: 1000,
